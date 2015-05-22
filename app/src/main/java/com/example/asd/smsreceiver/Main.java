@@ -14,7 +14,7 @@ public class Main extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        smsText = (TextView)findViewById(R.id.smsText);
+        smsText = (TextView) findViewById(R.id.smsText);
     }
 
     @Override
@@ -23,7 +23,9 @@ public class Main extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     private TextView smsText;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -37,6 +39,10 @@ public class Main extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showText(CharSequence text) {
+        smsText.setText(text);
     }
 }
 
