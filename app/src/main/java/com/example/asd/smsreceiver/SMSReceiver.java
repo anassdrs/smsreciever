@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.telephony.SmsMessage;
 import android.app.Notification;
 import android.app.NotificationManager;
+
 import com.example.asd.smsreceiver.Main;
 
 public class SMSReceiver extends BroadcastReceiver {
@@ -22,13 +23,15 @@ public class SMSReceiver extends BroadcastReceiver {
                 messages[i] = SmsMessage.createFromPdu((byte[]) pduArray[i]);
             }
             StringBuilder bodyText = new StringBuilder();
-            for (int i = 0; i < messages.length; i++) {
-                bodyText.append(messages[i].getMessageBody());
+            for (SmsMessage message : messages) {
+                bodyText.append(message.getMessageBody());
             }
             String body = bodyText.toString();
-            Intent mIntent = new Intent(context, SmsService.class);
-            mIntent.putExtra("sms_body", body);
-            context.startService(mIntent);
+            if (body.contains("SMSTEST")) {
+                Intent mIntent = new Intent(context, SmsService.class);
+                mIntent.putExtra("sms_body", body);
+                context.startService(mIntent);
+            }
         }
 
     }
