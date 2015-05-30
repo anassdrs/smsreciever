@@ -43,7 +43,7 @@ public class SmsService extends Service {
     }
 
     public String getKeyFromString(String text){
-        String words[] = text.split(" ");
+        String words[] = text.split("#");
         String key = words[1];
         return key;
     }
